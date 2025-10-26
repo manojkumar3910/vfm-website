@@ -1,65 +1,167 @@
+"use client";
 import Image from "next/image";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <main>
+      {/* Header */}
+      <Header />
+
+      {/* Hero Section */}
+      <section className="relative w-full h-[500px] overflow-hidden">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+          src="/assests/airport.jpg"
+          alt="Airport view"
+          fill
+          className="object-cover"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <button className="absolute bottom-6 right-6 bg-[#E86A33] text-white px-6 py-3 font-semibold rounded shadow-md hover:bg-[#c95828]">
+          ENQUIRY NOW
+        </button>
+      </section>
+
+      {/* About Section */}
+      <section className="py-20 px-6 md:px-20 bg-white">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div id="about-us" className="scroll-mt-24">
+            <h2 className="text-3xl font-bold mb-6 text-gray-800">ABOUT US</h2>
+            <p className="text-gray-600 mb-6">
+              And produce say the ten moments parties. Simple innate summer fat
+              appear basket his desire joy. Outward clothes promise at gravity
+              do excited. Sufficient particular impossible by reasonable oh
+              expression is. Yet preference connection unpleasant yet
+              melancholy but end appearance.
+            </p>
+            <div className="flex gap-4">
+              <button className="bg-green-600 text-white px-5 py-2 rounded-lg shadow hover:bg-green-700">
+                Learn More
+              </button>
+              <button className="border border-green-600 text-green-600 px-5 py-2 rounded-lg hover:bg-green-100">
+                ▶ Watch Video
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-6">
+            {[
+              { label: "Completed Projects", value: "1000+" },
+              { label: "On Going Projects", value: "250+" },
+              { label: "Happy Clients", value: "500+" },
+              { label: "Offices through out GLOB", value: "25" },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-gray-100 p-6 text-center shadow rounded-lg"
+              >
+                <p className="text-2xl font-bold text-gray-800">{item.value}</p>
+                <p className="text-gray-600 text-sm">{item.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+      </section>
+
+      {/* Destinations */}
+      <section className="py-20 px-6 md:px-20 text-center bg-gray-50">
+        <h3 className="text-sm uppercase tracking-wide text-gray-500">
+          Top Selling
+        </h3>
+        <h2 className="text-3xl font-bold text-gray-800 mb-12">
+          Top Destinations
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              img: "/assests/periyakovil.jpg",
+              title: "Periya Kovil, Thanjavur",
+              price: "$5.42k",
+              duration: "10 Days Trip",
+            },
+            {
+              img: "/assests/tajmahal.jpg",
+              title: "Taj Mahal, Delhi",
+              price: "$4.2k",
+              duration: "12 Days Trip",
+            },
+            {
+              img: "/assests/dhanushkodi.jpg",
+              title: "Dhanushkodi",
+              price: "$15k",
+              duration: "28 Days Trip",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition"
+            >
+              <Image
+                src={item.img}
+                alt={item.title}
+                width={400}
+                height={300}
+                className="object-cover w-full h-56"
+              />
+              <div className="p-5 text-left">
+                <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 mb-1">{item.price}</p>
+                <p className="text-sm text-gray-500">✈ {item.duration}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact Form */}
+      <section className="py-20 px-6 md:px-20 text-center">
+        <h2 className="text-2xl font-bold mb-8">
+          BOOK YOUR DREAM VACAY TODAY!
+        </h2>
+        <form className="max-w-3xl mx-auto space-y-4">
+          <input
+            type="text"
+            placeholder="Contact Name"
+            className="w-full border border-gray-300 p-3 rounded"
+          />
+          <input
+            type="text"
+            placeholder="Street"
+            className="w-full border border-gray-300 p-3 rounded"
+          />
+          <div className="grid md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="City"
+              className="border border-gray-300 p-3 rounded"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <input
+              type="text"
+              placeholder="Postcode"
+              className="border border-gray-300 p-3 rounded"
+            />
+          </div>
+          <input
+            type="text"
+            placeholder="Contact Phone"
+            className="w-full border border-gray-300 p-3 rounded"
+          />
+          <input
+            type="email"
+            placeholder="E-mail"
+            className="w-full border border-gray-300 p-3 rounded"
+          />
+          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700">
+            Submit
+          </button>
+        </form>
+      </section>
+
+      {/* Footer */}
+      <Footer />
+    </main>
   );
 }
