@@ -5,37 +5,37 @@ import Footer from "../../components/Footer";
 
 const packages = [
   {
-    img: '/assets/thanjai.jpg',
+    img: '/assests/bangalore.jpg',
     title: 'periya kovil,thanjai',
     price: '$5,42k',
     duration: '10 Days Trip',
   },
   {
-    img: '/assets/hero.jpg',
+    img: '/assests/pondy.jpg',
     title: 'periya kovil,thanjai',
     price: '$5,42k',
     duration: '10 Days Trip',
   },
   {
-    img: '/assets/dhanushkodi.jpg',
+    img: '/assests/kerala.jpg',
     title: 'periya kovil,thanjai',
     price: '$5,42k',
     duration: '10 Days Trip',
   },
   {
-    img: '/assets/hero.jpg',
+    img: '/assests/kodaikanal.jpg',
     title: 'periya kovil,thanjai',
     price: '$5,42k',
     duration: '10 Days Trip',
   },
   {
-    img: '/assets/tajmahal.jpg',
+    img: '/assests/mysore.jpg',
     title: 'periya kovil,thanjai',
     price: '$5,42k',
     duration: '10 Days Trip',
   },
   {
-    img: '/assets/thanjai.jpg',
+    img: '/assests/tirupathi.jpg',
     title: 'periya kovil,thanjai',
     price: '$5,42k',
     duration: '10 Days Trip',
@@ -65,7 +65,7 @@ export default function TourPackages() {
     <main>
       <Header />
       <section className="bg-white min-h-screen flex flex-col items-center">
-        <h1 className="font-bold text-4xl mt-12 mb-8">Tour packages</h1>
+        <h1 className="font-bold text-4xl text-black mt-12 mb-8">Tour packages</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
           {packages.map((p, i) => (
             <div
@@ -91,24 +91,45 @@ export default function TourPackages() {
         ))}
       </div>
 
-      <section className="w-full flex flex-col items-center mb-16">
-        <h2 className="text-2xl font-bold mb-6 text-center">
+      <section className="py-20 px-6 md:px-20 text-center">
+        <h2 className="text-2xl font-bold mb-8">
           BOOK YOUR DREAM VACAY TODAY!
         </h2>
-        <form className="w-full max-w-md flex flex-col gap-3">
-          <input type="text" placeholder="Contact name" className="border rounded px-3 py-2" />
-          <input type="text" placeholder="Street" className="border rounded px-3 py-2" />
-          <div className="flex gap-2">
-            <input type="text" placeholder="City" className="border rounded px-3 py-2 w-full" />
-            <input type="text" placeholder="Postcode" className="border rounded px-3 py-2 w-full" />
+        <form className="max-w-3xl mx-auto space-y-4">
+          <input
+            type="text"
+            placeholder="Contact Name"
+            className="w-full border border-gray-300 p-3 rounded"
+          />
+          <input
+            type="text"
+            placeholder="Street"
+            className="w-full border border-gray-300 p-3 rounded"
+          />
+          <div className="grid md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="City"
+              className="border border-gray-300 p-3 rounded"
+            />
+            <input
+              type="text"
+              placeholder="Postcode"
+              className="border border-gray-300 p-3 rounded"
+            />
           </div>
-          <input type="text" placeholder="Contact Phone" className="border rounded px-3 py-2" />
-          <input type="email" placeholder="E-mail" className="border rounded px-3 py-2" />
-          <button
-            className="bg-blue-600 text-white rounded px-3 py-2 mt-2 font-semibold"
-            type="submit"
-          >
-            SUBMIT
+          <input
+            type="text"
+            placeholder="Contact Phone"
+            className="w-full border border-gray-300 p-3 rounded"
+          />
+          <input
+            type="email"
+            placeholder="E-mail"
+            className="w-full border border-gray-300 p-3 rounded"
+          />
+          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700">
+            Submit
           </button>
         </form>
       </section>
