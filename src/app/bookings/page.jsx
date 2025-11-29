@@ -2,86 +2,528 @@
 import Image from "next/image";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { useState } from "react";
+
+const vehicles = [
+  {
+    id: "traveller",
+    name: "Tempo Traveller",
+    image: "/assests/traveller.jpg",
+    capacity: "12-17 Seater",
+    features: ["AC", "Push-back Seats", "Music System", "Luggage Space"],
+    description: "Perfect for group trips and family outings",
+  },
+  {
+    id: "innova",
+    name: "Toyota Innova Crysta",
+    image: "/assests/inova.jpeg",
+    capacity: "6-7 Seater",
+    features: ["AC", "Premium Interior", "Captain Seats", "Spacious"],
+    description: "Comfortable SUV for small groups",
+  },
+];
 
 export default function BookingsPage() {
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    pickupLocation: "",
+    dropLocation: "",
+    pickupDate: "",
+    returnDate: "",
+    passengers: "2",
+    specialRequests: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 5000);
+    }, 1500);
+  };
+
   return (
-    <main>
-      {/* Header */}
+    <main className="min-h-screen bg-gray-50">
       <Header />
 
-      {/* Title */}
-      <section className="bg-white min-h-screen flex flex-col items-center">
-      <section className="text-center py-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-black">
-          Bookings
-        </h1>
+      {/* Hero Section */}
+      <section className="relative pt-24 pb-16 bg-gradient-to-br from-green-900 via-green-800 to-teal-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 right-10 w-72 h-72 bg-yellow-400 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 left-10 w-96 h-96 bg-teal-400 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-6 py-16 text-center">
+          <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
+            🚗 Book Your Ride
+          </span>
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            Vehicle Bookings
+          </h1>
+          <p className="text-xl text-green-100 max-w-2xl mx-auto">
+            Choose from our fleet of comfortable vehicles for your perfect
+            journey. Professional drivers and 24/7 support included.
+          </p>
+        </div>
       </section>
 
-      {/* Vehicle Images */}
-      <section className="flex flex-col md:flex-row justify-center gap-10 px-6 md:px-20">
-        <div className="w-full md:w-1/3">
-          <Image
-            src="/assests/traveller.jpg"
-            alt="Traveller Van"
-            width={500}
-            height={350}
-            className="rounded-lg shadow-md object-cover"
-          />
+      {/* Vehicle Selection */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="text-center mb-12">
+          <span className="inline-block px-4 py-2 bg-green-100 text-green-600 rounded-full text-sm font-medium mb-4">
+            Step 1
+          </span>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+            Select Your Vehicle
+          </h2>
+          <p className="text-gray-500 max-w-xl mx-auto">
+            Choose the perfect vehicle that suits your travel needs
+          </p>
         </div>
-        <div className="w-full md:w-1/3">
-          <Image
-            src="/assests/inova.jpeg"
-            alt="Toyota Innova"
-            width={500}
-            height={350}
-            className="rounded-lg shadow-md object-cover"
-          />
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {vehicles.map((vehicle) => (
+            <div
+              key={vehicle.id}
+              onClick={() => setSelectedVehicle(vehicle.id)}
+              className={`relative bg-white rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ${
+                selectedVehicle === vehicle.id
+                  ? "ring-4 ring-green-500 shadow-2xl shadow-green-500/20 scale-[1.02]"
+                  : "shadow-lg hover:shadow-xl hover:-translate-y-1"
+              }`}
+            >
+              {selectedVehicle === vehicle.id && (
+                <div className="absolute top-4 right-4 z-10 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                  <svg
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              )}
+
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src={vehicle.image}
+                  alt={vehicle.name}
+                  fill
+                  className="object-cover transition-transform duration-700 hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-2xl font-bold">{vehicle.name}</h3>
+                  <p className="text-green-300">{vehicle.capacity}</p>
+                </div>
+              </div>
+
+              <div className="p-6">
+                <p className="text-gray-600 mb-4">{vehicle.description}</p>
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {vehicle.features.map((feature, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <div
+                    className={`px-4 py-2 rounded-full font-medium ${
+                      selectedVehicle === vehicle.id
+                        ? "bg-green-500 text-white"
+                        : "bg-gray-100 text-gray-600"
+                    }`}
+                  >
+                    {selectedVehicle === vehicle.id ? "Selected" : "Select"}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Booking Form */}
-      <section className="py-20 px-6 md:px-20 text-center">
-        <form className="max-w-3xl mx-auto space-y-4">
-          <input
-            type="text"
-            placeholder="Contact Name"
-            className="w-full border border-gray-300 p-3 rounded"
-          />
-          <input
-            type="text"
-            placeholder="Street"
-            className="w-full border border-gray-300 p-3 rounded"
-          />
-          <div className="grid md:grid-cols-2 gap-4">
-            <input
-              type="text"
-              placeholder="City"
-              className="border border-gray-300 p-3 rounded"
-            />
-            <input
-              type="text"
-              placeholder="Postcode"
-              className="border border-gray-300 p-3 rounded"
-            />
+      <section className="py-16 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-4">
+              Step 2
+            </span>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              Enter Your Details
+            </h2>
+            <p className="text-gray-500 max-w-xl mx-auto">
+              Fill in your trip details and we'll get back to you within 30
+              minutes
+            </p>
           </div>
-          <input
-            type="text"
-            placeholder="Contact Phone"
-            className="w-full border border-gray-300 p-3 rounded"
-          />
-          <input
-            type="email"
-            placeholder="E-mail"
-            className="w-full border border-gray-300 p-3 rounded"
-          />
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700">
-            Submit
-          </button>
-        </form>
-      </section>
+
+          {/* Success Message */}
+          {showSuccess && (
+            <div className="mb-8 p-6 bg-green-50 border border-green-200 rounded-2xl flex items-center gap-4 animate-fade-in">
+              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-semibold text-green-800">
+                  Booking Request Submitted!
+                </h3>
+                <p className="text-green-600 text-sm">
+                  Our team will contact you shortly with a confirmation.
+                </p>
+              </div>
+            </div>
+          )}
+
+          <form
+            onSubmit={handleSubmit}
+            className="bg-gray-50 rounded-3xl p-8 md:p-10"
+          >
+            {/* Personal Information */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm">
+                  1
+                </span>
+                Personal Information
+              </h3>
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="John Doe"
+                    className="w-full border border-gray-200 p-4 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="+91 98765 43210"
+                    className="w-full border border-gray-200 p-4 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="john@example.com"
+                    className="w-full border border-gray-200 p-4 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Trip Details */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm">
+                  2
+                </span>
+                Trip Details
+              </h3>
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Pickup Location *
+                  </label>
+                  <div className="relative">
+                    <svg
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                    <input
+                      type="text"
+                      name="pickupLocation"
+                      value={formData.pickupLocation}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="Enter pickup address"
+                      className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Drop Location *
+                  </label>
+                  <div className="relative">
+                    <svg
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                    <input
+                      type="text"
+                      name="dropLocation"
+                      value={formData.dropLocation}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="Enter destination"
+                      className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Pickup Date *
+                  </label>
+                  <input
+                    type="date"
+                    name="pickupDate"
+                    value={formData.pickupDate}
+                    onChange={handleInputChange}
+                    required
+                    min={new Date().toISOString().split("T")[0]}
+                    className="w-full border border-gray-200 p-4 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Return Date *
+                  </label>
+                  <input
+                    type="date"
+                    name="returnDate"
+                    value={formData.returnDate}
+                    onChange={handleInputChange}
+                    required
+                    min={formData.pickupDate || new Date().toISOString().split("T")[0]}
+                    className="w-full border border-gray-200 p-4 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Number of Passengers
+                  </label>
+                  <select
+                    name="passengers"
+                    value={formData.passengers}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-200 p-4 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  >
+                    {[...Array(17)].map((_, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        {i + 1} {i === 0 ? "Passenger" : "Passengers"}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Selected Vehicle
+                  </label>
+                  <div className="w-full border border-gray-200 p-4 rounded-xl bg-gray-100">
+                    {selectedVehicle
+                      ? vehicles.find((v) => v.id === selectedVehicle)?.name
+                      : "Please select a vehicle above"}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Special Requests */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-sm">
+                  3
+                </span>
+                Additional Information
+              </h3>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Special Requests (Optional)
+                </label>
+                <textarea
+                  name="specialRequests"
+                  value={formData.specialRequests}
+                  onChange={handleInputChange}
+                  rows={4}
+                  placeholder="Any special requirements or requests..."
+                  className="w-full border border-gray-200 p-4 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                ></textarea>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting || !selectedVehicle}
+              className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 ${
+                isSubmitting || !selectedVehicle
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 transform hover:-translate-y-1 shadow-lg hover:shadow-green-500/25"
+              }`}
+            >
+              {isSubmitting ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg
+                    className="animate-spin w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Processing...
+                </span>
+              ) : (
+                "Submit Booking Request"
+              )}
+            </button>
+
+            <p className="text-center text-gray-500 text-sm mt-4">
+              By submitting, you agree to our terms and conditions
+            </p>
+          </form>
+        </div>
       </section>
 
-      {/* Footer */}
+      {/* Why Book With Us */}
+      <section className="py-16 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              Why Book With Us?
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              {
+                icon: "🚗",
+                title: "Well-Maintained Fleet",
+                desc: "All vehicles are regularly serviced and sanitized",
+              },
+              {
+                icon: "👨‍✈️",
+                title: "Professional Drivers",
+                desc: "Experienced, verified, and courteous drivers",
+              },
+              {
+                icon: "💰",
+                title: "Transparent Pricing",
+                desc: "No hidden charges, pay what you see",
+              },
+              {
+                icon: "🔒",
+                title: "Safe & Secure",
+                desc: "GPS tracked vehicles with 24/7 support",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="text-center bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="text-4xl mb-4">{item.icon}</div>
+                <h3 className="font-semibold text-gray-800 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-gray-500 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   );
