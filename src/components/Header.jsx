@@ -40,11 +40,11 @@ export default function Header() {
               />
               <div className="absolute inset-0 bg-blue-500/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
             </div>
-            <div className="hidden sm:block">
+            <div>
               <h1 className="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors">
                 VForce Tourism
               </h1>
-              <p className="text-xs text-gray-500">Travels of India</p>
+              <p className="text-xs text-gray-500 hidden sm:block">Travels of India</p>
             </div>
           </Link>
 

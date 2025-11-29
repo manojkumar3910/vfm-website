@@ -461,16 +461,6 @@ export default function HomePage() {
                     />
                   </svg>
                 </Link>
-                <button className="inline-flex items-center gap-2 border-2 border-green-600 text-green-600 px-6 py-3 rounded-full hover:bg-green-50 transition-colors">
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  Watch Video
-                </button>
               </div>
             </div>
 
