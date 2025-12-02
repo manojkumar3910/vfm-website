@@ -5,14 +5,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState, useEffect, useRef } from "react";
 
-// Hero slideshow images
+// Hero slideshow images - High resolution travel images
 const heroImages = [
-  "/assests/tajmahal.jpg",
-  "/assests/kerala.jpg",
-  "/assests/mysore.jpg",
-  "/assests/kodaikanal.jpg",
-  "/assests/dhanushkodi.jpg",
-  "/assests/periyakovil.jpg",
+  "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1920&q=80", // Taj Mahal
+  "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1920&q=80", // Munnar Tea Gardens
+  "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=1920&q=80", // Rameshwaram Temple
+  "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1920&q=80", // Goa Beach
+  "https://images.unsplash.com/photo-1590077428593-a55bb07c4665?w=1920&q=80", // Kanyakumari
+  "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=1920&q=80", // Ooty Hills
 ];
 
 // Animated Counter Component

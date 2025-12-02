@@ -21,6 +21,14 @@ const vehicles = [
     features: ["AC", "Premium Interior", "Captain Seats", "Spacious"],
     description: "Comfortable SUV for small groups",
   },
+  {
+    id: "acting-driver",
+    name: "Acting Driver",
+    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80",
+    capacity: "Your Vehicle",
+    features: ["Experienced Driver", "Know Local Routes", "Flexible Timing", "Safe Driving"],
+    description: "Professional driver for your own vehicle",
+  },
 ];
 
 export default function BookingsPage() {
@@ -95,7 +103,7 @@ export default function BookingsPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {vehicles.map((vehicle) => (
             <div
               key={vehicle.id}

@@ -6,104 +6,390 @@ import Footer from "../../components/Footer";
 import { useState, useMemo } from "react";
 
 const packages = [
+  // Tamil Nadu - Temples
   {
-    img: "/assests/bangalore.jpg",
-    title: "Bangalore City Tour",
-    location: "Karnataka",
-    price: 4200,
-    duration: "3 Days Trip",
-    rating: 4.6,
-    reviews: 128,
-    category: "city",
-    featured: true,
-  },
-  {
-    img: "/assests/pondy.jpg",
-    title: "Pondicherry Getaway",
-    location: "Puducherry",
-    price: 3800,
-    duration: "4 Days Trip",
-    rating: 4.8,
-    reviews: 256,
-    category: "beach",
-    featured: true,
-  },
-  {
-    img: "/assests/kerala.jpg",
-    title: "Kerala Backwaters",
-    location: "Kerala",
-    price: 8500,
-    duration: "6 Days Trip",
-    rating: 4.9,
-    reviews: 412,
-    category: "nature",
-    featured: true,
-  },
-  {
-    img: "/assests/kodaikanal.jpg",
-    title: "Kodaikanal Hills",
+    img: "https://images.unsplash.com/photo-1621427732026-4d0e9e2b9c8e?w=800&q=80",
+    title: "Rameshwaram Pilgrimage",
     location: "Tamil Nadu",
-    price: 5200,
-    duration: "5 Days Trip",
+    duration: "3 Days Trip",
+    rating: 4.9,
+    reviews: 456,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+    title: "Kanchipuram Temple Tour",
+    location: "Tamil Nadu",
+    duration: "2 Days Trip",
     rating: 4.7,
-    reviews: 189,
-    category: "hills",
-    featured: false,
+    reviews: 234,
+    category: "spiritual",
   },
   {
-    img: "/assests/mysore.jpg",
-    title: "Mysore Palace Tour",
-    location: "Karnataka",
-    price: 4800,
-    duration: "4 Days Trip",
-    rating: 4.5,
-    reviews: 167,
-    category: "heritage",
-    featured: false,
+    img: "https://images.unsplash.com/photo-1609766934427-fc63bf74e694?w=800&q=80",
+    title: "Tiruvannamalai & Girivalam",
+    location: "Tamil Nadu",
+    duration: "2 Days Trip",
+    rating: 4.8,
+    reviews: 389,
+    category: "spiritual",
   },
   {
-    img: "/assests/tirupathi.jpg",
-    title: "Tirupati Pilgrimage",
-    location: "Andhra Pradesh",
-    price: 3200,
+    img: "https://images.unsplash.com/photo-1590077428593-a55bb07c4665?w=800&q=80",
+    title: "Kanyakumari Sunrise",
+    location: "Tamil Nadu",
+    duration: "3 Days Trip",
+    rating: 4.8,
+    reviews: 512,
+    category: "beach",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?w=800&q=80",
+    title: "Madurai Meenakshi Temple",
+    location: "Tamil Nadu",
+    duration: "2 Days Trip",
+    rating: 4.9,
+    reviews: 623,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=800&q=80",
+    title: "Thanjavur Big Temple",
+    location: "Tamil Nadu",
+    duration: "2 Days Trip",
+    rating: 4.8,
+    reviews: 345,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1585135497273-1a86b09fe70e?w=800&q=80",
+    title: "Srirangam Temple Tour",
+    location: "Tamil Nadu",
+    duration: "2 Days Trip",
+    rating: 4.7,
+    reviews: 278,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+    title: "Palani Murugan Temple",
+    location: "Tamil Nadu",
+    duration: "2 Days Trip",
+    rating: 4.8,
+    reviews: 445,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80",
+    title: "Chidambaram Natarajar Temple",
+    location: "Tamil Nadu",
+    duration: "2 Days Trip",
+    rating: 4.6,
+    reviews: 198,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1597735881932-d9664c9bbcea?w=800&q=80",
+    title: "Kutralam Waterfalls & Temple",
+    location: "Tamil Nadu",
+    duration: "3 Days Trip",
+    rating: 4.7,
+    reviews: 367,
+    category: "nature",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1583309219338-a582f1f9ca6b?w=800&q=80",
+    title: "Velankanni Church",
+    location: "Tamil Nadu",
     duration: "2 Days Trip",
     rating: 4.8,
     reviews: 534,
     category: "spiritual",
-    featured: true,
+  },
+  // Hill Stations
+  {
+    img: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=800&q=80",
+    title: "Kodaikanal Hills",
+    location: "Tamil Nadu",
+    duration: "4 Days Trip",
+    rating: 4.8,
+    reviews: 678,
+    category: "hills",
   },
   {
-    img: "/assests/periyakovil.jpg",
-    title: "Thanjavur Temple Tour",
+    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+    title: "Yercaud Coffee Estate Tour",
     location: "Tamil Nadu",
-    price: 3500,
     duration: "3 Days Trip",
     rating: 4.6,
-    reviews: 145,
-    category: "heritage",
-    featured: false,
+    reviews: 234,
+    category: "hills",
   },
   {
-    img: "/assests/tajmahal.jpg",
-    title: "Golden Triangle",
-    location: "Delhi-Agra-Jaipur",
-    price: 12000,
-    duration: "7 Days Trip",
-    rating: 4.9,
-    reviews: 678,
-    category: "heritage",
-    featured: true,
-  },
-  {
-    img: "/assests/dhanushkodi.jpg",
-    title: "Dhanushkodi Explorer",
+    img: "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=800&q=80",
+    title: "Coonoor & Ooty",
     location: "Tamil Nadu",
-    price: 4500,
     duration: "4 Days Trip",
+    rating: 4.9,
+    reviews: 789,
+    category: "hills",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800&q=80",
+    title: "Valparai Tea Gardens",
+    location: "Tamil Nadu",
+    duration: "3 Days Trip",
     rating: 4.7,
-    reviews: 203,
+    reviews: 345,
+    category: "hills",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
+    title: "Meghamalai Wildlife",
+    location: "Tamil Nadu",
+    duration: "3 Days Trip",
+    rating: 4.6,
+    reviews: 189,
+    category: "hills",
+  },
+  // Kerala
+  {
+    img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80",
+    title: "Kerala Backwaters",
+    location: "Kerala",
+    duration: "5 Days Trip",
+    rating: 4.9,
+    reviews: 892,
+    category: "nature",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&q=80",
+    title: "Munnar Tea Plantations",
+    location: "Kerala",
+    duration: "4 Days Trip",
+    rating: 4.9,
+    reviews: 756,
+    category: "hills",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+    title: "Wayanad Adventure",
+    location: "Kerala",
+    duration: "4 Days Trip",
+    rating: 4.8,
+    reviews: 534,
+    category: "nature",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=800&q=80",
+    title: "Sabarimala Pilgrimage",
+    location: "Kerala",
+    duration: "3 Days Trip",
+    rating: 4.9,
+    reviews: 923,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1593030103066-0093718e7177?w=800&q=80",
+    title: "Guruvayur Krishna Temple",
+    location: "Kerala",
+    duration: "2 Days Trip",
+    rating: 4.8,
+    reviews: 567,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1602301360498-fc06e3e7d07c?w=800&q=80",
+    title: "Thiruvananthapuram Temple",
+    location: "Kerala",
+    duration: "2 Days Trip",
+    rating: 4.7,
+    reviews: 345,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+    title: "Varkala Beach & Temple",
+    location: "Kerala",
+    duration: "3 Days Trip",
+    rating: 4.7,
+    reviews: 423,
     category: "beach",
-    featured: false,
+  },
+  {
+    img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80",
+    title: "Vagamon Hills",
+    location: "Kerala",
+    duration: "3 Days Trip",
+    rating: 4.6,
+    reviews: 267,
+    category: "hills",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80",
+    title: "Malayattoor Church",
+    location: "Kerala",
+    duration: "2 Days Trip",
+    rating: 4.5,
+    reviews: 189,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80",
+    title: "Chottanikkara Temple",
+    location: "Kerala",
+    duration: "2 Days Trip",
+    rating: 4.6,
+    reviews: 234,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1506461883276-594a12b11cf3?w=800&q=80",
+    title: "Thirunelli Temple Wayanad",
+    location: "Kerala",
+    duration: "3 Days Trip",
+    rating: 4.7,
+    reviews: 198,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1518623489648-a173ef7824f3?w=800&q=80",
+    title: "Ettumanoor Mahadeva Temple",
+    location: "Kerala",
+    duration: "2 Days Trip",
+    rating: 4.5,
+    reviews: 156,
+    category: "spiritual",
+  },
+  // Andhra Pradesh & Telangana
+  {
+    img: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+    title: "Tirupati Balaji Darshan",
+    location: "Andhra Pradesh",
+    duration: "2 Days Trip",
+    rating: 4.9,
+    reviews: 1234,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1545126178-862cdb469409?w=800&q=80",
+    title: "Srisailam Jyotirlinga",
+    location: "Andhra Pradesh",
+    duration: "3 Days Trip",
+    rating: 4.8,
+    reviews: 567,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=800&q=80",
+    title: "Simhachalam Temple",
+    location: "Andhra Pradesh",
+    duration: "2 Days Trip",
+    rating: 4.7,
+    reviews: 345,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80",
+    title: "Kanipakam Vinayaka",
+    location: "Andhra Pradesh",
+    duration: "2 Days Trip",
+    rating: 4.6,
+    reviews: 289,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1558431382-27f8fd8edd40?w=800&q=80",
+    title: "Annavaram Temple",
+    location: "Andhra Pradesh",
+    duration: "2 Days Trip",
+    rating: 4.7,
+    reviews: 312,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
+    title: "Ahobilam Narasimha Temple",
+    location: "Andhra Pradesh",
+    duration: "3 Days Trip",
+    rating: 4.8,
+    reviews: 234,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1590766940554-634f76d13ff4?w=800&q=80",
+    title: "Vijayawada Durga Temple",
+    location: "Andhra Pradesh",
+    duration: "2 Days Trip",
+    rating: 4.6,
+    reviews: 278,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1586595577176-21d8dda8f28d?w=800&q=80",
+    title: "Araku Valley",
+    location: "Andhra Pradesh",
+    duration: "4 Days Trip",
+    rating: 4.8,
+    reviews: 456,
+    category: "hills",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=800&q=80",
+    title: "Mangalagiri Temple",
+    location: "Andhra Pradesh",
+    duration: "2 Days Trip",
+    rating: 4.5,
+    reviews: 167,
+    category: "spiritual",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&q=80",
+    title: "Nallamala Hills Trek",
+    location: "Andhra Pradesh",
+    duration: "3 Days Trip",
+    rating: 4.6,
+    reviews: 189,
+    category: "hills",
+  },
+  // Karnataka
+  {
+    img: "https://images.unsplash.com/photo-1600100397608-de0f0ddc3a27?w=800&q=80",
+    title: "Mysore Palace Tour",
+    location: "Karnataka",
+    duration: "3 Days Trip",
+    rating: 4.8,
+    reviews: 567,
+    category: "spiritual",
+  },
+  // Goa
+  {
+    img: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80",
+    title: "Goa Beach Paradise",
+    location: "Goa",
+    duration: "5 Days Trip",
+    rating: 4.9,
+    reviews: 1023,
+    category: "beach",
+  },
+  // Beach
+  {
+    img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    title: "Dhanushkodi Ghost Town",
+    location: "Tamil Nadu",
+    duration: "3 Days Trip",
+    rating: 4.7,
+    reviews: 345,
+    category: "beach",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80",
+    title: "Pondicherry French Colony",
+    location: "Puducherry",
+    duration: "3 Days Trip",
+    rating: 4.8,
+    reviews: 478,
+    category: "beach",
   },
 ];
 
@@ -111,16 +397,13 @@ const categories = [
   { id: "all", label: "All Packages", icon: "🌍" },
   { id: "beach", label: "Beaches", icon: "🏖️" },
   { id: "hills", label: "Hill Stations", icon: "⛰️" },
-  { id: "heritage", label: "Heritage", icon: "🏛️" },
   { id: "spiritual", label: "Spiritual", icon: "🙏" },
   { id: "nature", label: "Nature", icon: "🌿" },
-  { id: "city", label: "City Tours", icon: "🏙️" },
 ];
 
 export default function TourPackages() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [sortBy, setSortBy] = useState("featured");
 
   const filteredPackages = useMemo(() => {
     let result = [...packages];
@@ -139,21 +422,8 @@ export default function TourPackages() {
       result = result.filter((p) => p.category === selectedCategory);
     }
 
-    // Sort
-    switch (sortBy) {
-      case "rating":
-        result.sort((a, b) => b.rating - a.rating);
-        break;
-      case "reviews":
-        result.sort((a, b) => b.reviews - a.reviews);
-        break;
-      case "featured":
-      default:
-        result.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
-    }
-
     return result;
-  }, [searchQuery, selectedCategory, sortBy]);
+  }, [searchQuery, selectedCategory]);
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -226,25 +496,12 @@ export default function TourPackages() {
           ))}
         </div>
 
-        {/* Filters & Sort Bar */}
+        {/* Filters Bar */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-white rounded-2xl p-4 shadow">
           <div className="flex items-center gap-4">
             <span className="text-gray-500">
               {filteredPackages.length} packages found
             </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="text-gray-500 text-sm">Sort by:</span>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="featured">Featured</option>
-              <option value="rating">Highest Rated</option>
-              <option value="reviews">Most Reviews</option>
-            </select>
           </div>
         </div>
 
@@ -264,12 +521,6 @@ export default function TourPackages() {
                   className="object-cover h-56 w-full group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-
-                {p.featured && (
-                  <span className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-orange-500 to-pink-500 text-white text-xs font-bold rounded-full">
-                    ⭐ Featured
-                  </span>
-                )}
 
                 <div className="absolute top-4 right-4 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full">
                   <svg
