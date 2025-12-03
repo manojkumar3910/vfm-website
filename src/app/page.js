@@ -5,14 +5,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState, useEffect, useRef } from "react";
 
-// Hero slideshow images - High resolution travel images
+// Hero slideshow images - Local images
 const heroImages = [
-  "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1920&q=80", // Taj Mahal
-  "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1920&q=80", // Munnar Tea Gardens
-  "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=1920&q=80", // Rameshwaram Temple
-  "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1920&q=80", // Goa Beach
-  "https://images.unsplash.com/photo-1590077428593-a55bb07c4665?w=1920&q=80", // Kanyakumari
-  "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=1920&q=80", // Ooty Hills
+  "/assests/tajmahal.jpg",
+  "/assests/munnar.jpg",
+  "/assests/rameshwaram.jpg",
+  "/assests/goa.jpg",
+  "/assests/kannyakumari.jpg",
+  "/assests/ooty.jpg",
 ];
 
 // Animated Counter Component
@@ -78,6 +78,20 @@ export default function HomePage() {
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captcha, setCaptcha] = useState({ num1: 0, num2: 0, answer: "" });
+  const [captchaError, setCaptchaError] = useState("");
+
+  // Generate captcha on mount
+  useEffect(() => {
+    generateCaptcha();
+  }, []);
+
+  const generateCaptcha = () => {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    setCaptcha({ num1, num2, answer: "" });
+    setCaptchaError("");
+  };
 
   // Slideshow effect
   useEffect(() => {
@@ -107,6 +121,18 @@ export default function HomePage() {
     if (!formData.pickupLocation) errors.pickupLocation = "Pickup location is required";
     if (!formData.pickupDate) errors.pickupDate = "Pickup date is required";
     if (!formData.destination) errors.destination = "Destination is required";
+    
+    // Validate captcha
+    const correctAnswer = captcha.num1 + captcha.num2;
+    if (!captcha.answer) {
+      setCaptchaError("Please solve the captcha");
+      return errors;
+    } else if (parseInt(captcha.answer) !== correctAnswer) {
+      setCaptchaError("Incorrect answer. Please try again.");
+      generateCaptcha();
+      return errors;
+    }
+    setCaptchaError("");
     return errors;
   };
 
@@ -131,7 +157,7 @@ export default function HomePage() {
 
     setIsSubmitting(false);
     
-    // Reset form
+    // Reset form and generate new captcha
     setFormData({
       name: "",
       contactNumber: "",
@@ -139,6 +165,7 @@ export default function HomePage() {
       pickupDate: "",
       destination: "",
     });
+    generateCaptcha();
   };
 
   const destinations = [
@@ -464,23 +491,16 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                { label: "Completed Projects", value: "1000", suffix: "+" },
-                { label: "Ongoing Projects", value: "250", suffix: "+" },
-                { label: "Happy Clients", value: "500", suffix: "+" },
-                { label: "Global Offices", value: "25", suffix: "" },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="group bg-white p-8 text-center shadow-lg rounded-2xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100"
-                >
-                  <p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">
-                    <AnimatedCounter target={item.value} suffix={item.suffix} />
-                  </p>
-                  <p className="text-gray-600">{item.label}</p>
-                </div>
-              ))}
+            <div className="relative">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                <Image
+                  src="/assests/vfm-logo.png"
+                  alt="VForce Tourism Logo"
+                  width={600}
+                  height={500}
+                  className="object-contain w-full h-[400px] p-8"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -753,6 +773,37 @@ export default function HomePage() {
                     className={`w-full border ${formErrors.destination ? 'border-red-500' : 'border-gray-200'} p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                   />
                   {formErrors.destination && <p className="text-red-500 text-sm mt-1">{formErrors.destination}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Verify you're human <span className="text-red-500">*</span>
+                  </label>
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 bg-gray-100 px-4 py-3 rounded-xl">
+                      <span className="text-lg font-bold text-gray-700">{captcha.num1}</span>
+                      <span className="text-lg font-bold text-blue-600">+</span>
+                      <span className="text-lg font-bold text-gray-700">{captcha.num2}</span>
+                      <span className="text-lg font-bold text-gray-500">=</span>
+                    </div>
+                    <input
+                      type="number"
+                      value={captcha.answer}
+                      onChange={(e) => setCaptcha({ ...captcha, answer: e.target.value })}
+                      placeholder="?"
+                      className={`w-24 border ${captchaError ? 'border-red-500' : 'border-gray-200'} p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-center text-lg font-semibold`}
+                    />
+                    <button
+                      type="button"
+                      onClick={generateCaptcha}
+                      className="p-3 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors"
+                      title="Refresh captcha"
+                    >
+                      <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                    </button>
+                  </div>
+                  {captchaError && <p className="text-red-500 text-sm mt-1">{captchaError}</p>}
                 </div>
                 <button
                   type="submit"

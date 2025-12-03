@@ -94,7 +94,7 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
@@ -143,33 +143,6 @@ export default function Footer() {
                         ? "/#about-us"
                         : `/${item.toLowerCase().replace(" ", "-")}`
                     }
-                    className="text-gray-400 hover:text-white hover:pl-2 transition-all duration-300 flex items-center gap-2"
-                  >
-                    <span className="text-blue-500">›</span>
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Popular Destinations */}
-          <div>
-            <h4 className="font-semibold text-white text-lg mb-6 relative">
-              Popular Destinations
-              <span className="absolute bottom-0 left-0 w-12 h-0.5 bg-blue-600 -mb-2"></span>
-            </h4>
-            <ul className="space-y-3">
-              {[
-                "Taj Mahal, Agra",
-                "Kerala Backwaters",
-                "Goa Beaches",
-                "Rajasthan Heritage",
-                "Himalayan Treks",
-              ].map((item) => (
-                <li key={item}>
-                  <Link
-                    href="/tour-packages"
                     className="text-gray-400 hover:text-white hover:pl-2 transition-all duration-300 flex items-center gap-2"
                   >
                     <span className="text-blue-500">›</span>

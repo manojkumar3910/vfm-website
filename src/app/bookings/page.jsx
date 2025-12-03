@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const vehicles = [
   {
@@ -46,6 +46,20 @@ export default function BookingsPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [captcha, setCaptcha] = useState({ num1: 0, num2: 0, answer: "" });
+  const [captchaError, setCaptchaError] = useState("");
+
+  // Generate captcha on mount
+  useEffect(() => {
+    generateCaptcha();
+  }, []);
+
+  const generateCaptcha = () => {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    setCaptcha({ num1, num2, answer: "" });
+    setCaptchaError("");
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -54,14 +68,54 @@ export default function BookingsPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Validate captcha
+    const correctAnswer = captcha.num1 + captcha.num2;
+    if (!captcha.answer) {
+      setCaptchaError("Please solve the captcha");
+      return;
+    } else if (parseInt(captcha.answer) !== correctAnswer) {
+      setCaptchaError("Incorrect answer. Please try again.");
+      generateCaptcha();
+      return;
+    }
+    setCaptchaError("");
+    
     setIsSubmitting(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 5000);
-    }, 1500);
+    // Get selected vehicle name
+    const vehicleName = selectedVehicle 
+      ? vehicles.find((v) => v.id === selectedVehicle)?.name 
+      : "Not selected";
+
+    // Format the message for WhatsApp
+    const message = `*New Vehicle Booking Request*%0A%0A*Personal Details:*%0A• Name: ${formData.name}%0A• Phone: ${formData.phone}%0A• Email: ${formData.email}%0A%0A*Trip Details:*%0A• Vehicle: ${vehicleName}%0A• Pickup Location: ${formData.pickupLocation}%0A• Drop Location: ${formData.dropLocation}%0A• Pickup Date: ${formData.pickupDate}%0A• Return Date: ${formData.returnDate}%0A• Passengers: ${formData.passengers}%0A%0A*Special Requests:*%0A${formData.specialRequests || "None"}`;
+
+    // WhatsApp number
+    const whatsappNumber = "916380773081";
+
+    // Open WhatsApp with the message
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+
+    setIsSubmitting(false);
+    setShowSuccess(true);
+    generateCaptcha();
+    
+    // Reset form
+    setFormData({
+      name: "",
+      phone: "",
+      email: "",
+      pickupLocation: "",
+      dropLocation: "",
+      pickupDate: "",
+      returnDate: "",
+      passengers: "2",
+      specialRequests: "",
+    });
+    setSelectedVehicle(null);
+    
+    setTimeout(() => setShowSuccess(false), 5000);
   };
 
   return (
@@ -69,10 +123,14 @@ export default function BookingsPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 bg-gradient-to-br from-green-900 via-green-800 to-teal-900 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 right-10 w-72 h-72 bg-yellow-400 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-teal-400 rounded-full blur-3xl"></div>
+      <section className="relative pt-24 pb-16 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1920&q=80')",
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-green-900/90 via-green-800/85 to-teal-900/90"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 py-16 text-center">
@@ -438,6 +496,42 @@ export default function BookingsPage() {
                   className="w-full border border-gray-200 p-4 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                 ></textarea>
               </div>
+            </div>
+
+            {/* Captcha */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-sm">
+                  4
+                </span>
+                Verify You're Human
+              </h3>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 bg-gray-100 px-6 py-4 rounded-xl">
+                  <span className="text-xl font-bold text-gray-700">{captcha.num1}</span>
+                  <span className="text-xl font-bold text-blue-600">+</span>
+                  <span className="text-xl font-bold text-gray-700">{captcha.num2}</span>
+                  <span className="text-xl font-bold text-gray-500">=</span>
+                </div>
+                <input
+                  type="number"
+                  value={captcha.answer}
+                  onChange={(e) => setCaptcha({ ...captcha, answer: e.target.value })}
+                  placeholder="?"
+                  className={`w-28 border ${captchaError ? 'border-red-500' : 'border-gray-200'} p-4 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-center text-lg font-semibold`}
+                />
+                <button
+                  type="button"
+                  onClick={generateCaptcha}
+                  className="p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors"
+                  title="Refresh captcha"
+                >
+                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </button>
+              </div>
+              {captchaError && <p className="text-red-500 text-sm mt-2">{captchaError}</p>}
             </div>
 
             {/* Submit Button */}
