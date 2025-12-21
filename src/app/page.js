@@ -150,7 +150,7 @@ export default function HomePage() {
     const message = `*New Travel Enquiry*%0A%0A*Name:* ${formData.name}%0A*Contact Number:* +91 ${formData.contactNumber}%0A*Pickup Location:* ${formData.pickupLocation}%0A*Pickup Date:* ${formData.pickupDate}%0A*Destination:* ${formData.destination}`;
 
     // WhatsApp number
-    const whatsappNumber = "916380773081";
+    const whatsappNumber = "917397271527";
 
     // Open WhatsApp with the message
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
@@ -172,21 +172,21 @@ export default function HomePage() {
     {
       img: "/assests/periyakovil.jpg",
       title: "Periya Kovil, Thanjavur",
-      duration: "10 Days Trip",
+      duration: "4-5 Days Trip",
       rating: 4.8,
       reviews: 234,
     },
     {
       img: "/assests/tajmahal.jpg",
       title: "Taj Mahal, Agra",
-      duration: "12 Days Trip",
+      duration: "4-5 Days Trip",
       rating: 4.9,
       reviews: 567,
     },
     {
       img: "/assests/dhanushkodi.jpg",
       title: "Dhanushkodi",
-      duration: "28 Days Trip",
+      duration: "4-5 Days Trip",
       rating: 4.7,
       reviews: 189,
     },
@@ -317,18 +317,18 @@ export default function HomePage() {
         <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
           <div className="animate-fade-in-up">
             <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
-              ✈️ Explore India's Finest Destinations
+              ✈️ Best Travel Agency
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Discover Your Next
+              Tour Packages & Vehicle
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                Adventure
+                Booking Services
               </span>
             </h1>
             <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10">
-              Experience the beauty of India with our curated travel packages.
-              From majestic temples to serene beaches, we've got you covered.
+              VForce Tourism - Your trusted travel agency near you for cab booking, 
+              tempo traveller rental, and tour packages across India.
             </p>
           </div>
 
@@ -451,24 +451,21 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div id="about-us" className="scroll-mt-24">
               <span className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-4">
-                About Us
+                About Us - Tourism Services
               </span>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800 leading-tight">
-                We're Committed to
+                Best Travel Agency
                 <br />
-                <span className="text-blue-600">Your Adventure</span>
+                <span className="text-blue-600">Near You</span>
               </h2>
               <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                With over a decade of experience, VForce Tourism & Travels has
-                been crafting unforgettable journeys across India. Our team of
-                travel experts ensures every trip is personalized to your
-                preferences.
+                VForce Tourism & Travels is a leading travel agency offering comprehensive 
+                tourism services including tour packages, vehicle booking, tempo traveller rental, 
+                car rental, and professional driver services. Whether you're planning a Goa tour package, 
+                Munnar trip, Ooty tour, Kerala tour packages, or North India tour packages, 
+                we are your trusted tour operator near you for all travel needs.
               </p>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                From the snow-capped Himalayas to the tropical beaches of Goa,
-                we bring you closer to the diverse beauty of incredible India.
-              </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 mt-8">
                 <Link
                   href="/tour-packages"
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-green-500/25 hover:from-green-700 hover:to-green-800 transform hover:-translate-y-1 transition-all duration-300"
@@ -674,7 +671,7 @@ export default function HomePage() {
                   <div>
                     <p className="text-gray-500 text-sm">Call us at</p>
                     <p className="text-gray-800 font-semibold">
-                      +91 6380773081
+                      +91 7397271527
                     </p>
                   </div>
                 </div>
@@ -690,7 +687,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <p className="text-gray-500 text-sm">WhatsApp us at</p>
-                    <p className="text-gray-800 font-semibold">+91 6380773081</p>
+                    <p className="text-gray-800 font-semibold">+91 7397271527</p>
                   </div>
                 </div>
               </div>

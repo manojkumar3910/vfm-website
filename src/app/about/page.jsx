@@ -371,7 +371,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/916380773081"
+                href="https://wa.me/917397271527"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/30"
@@ -382,7 +382,7 @@ export default function AboutPage() {
                 WhatsApp Us
               </a>
               <a
-                href="tel:+916380773081"
+                href="tel:+917397271527"
                 className="inline-flex items-center justify-center gap-3 bg-white text-gray-800 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg border border-gray-200 hover:border-blue-300"
               >
                 <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

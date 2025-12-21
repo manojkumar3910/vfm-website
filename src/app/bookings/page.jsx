@@ -15,7 +15,7 @@ const vehicles = [
   },
   {
     id: "innova",
-    name: "Toyota Innova Crysta",
+    name: "Car",
     image: "/assests/inova.jpeg",
     capacity: "6-7 Seater",
     features: ["AC", "Premium Interior", "Captain Seats", "Spacious"],
@@ -28,6 +28,14 @@ const vehicles = [
     capacity: "Your Vehicle",
     features: ["Experienced Driver", "Know Local Routes", "Flexible Timing", "Safe Driving"],
     description: "Professional driver for your own vehicle",
+  },
+  {
+    id: "combo",
+    name: "Tempo Traveller + Car",
+    image: "/assests/traveller.jpg",
+    capacity: "18-24 Seater (Combined)",
+    features: ["Both Vehicles", "Large Groups", "Flexible Seating", "Best Value"],
+    description: "Combo package with both Tempo Traveller and Car for large groups",
   },
 ];
 
@@ -92,7 +100,7 @@ export default function BookingsPage() {
     const message = `*New Vehicle Booking Request*%0A%0A*Personal Details:*%0A• Name: ${formData.name}%0A• Phone: ${formData.phone}%0A• Email: ${formData.email}%0A%0A*Trip Details:*%0A• Vehicle: ${vehicleName}%0A• Pickup Location: ${formData.pickupLocation}%0A• Drop Location: ${formData.dropLocation}%0A• Pickup Date: ${formData.pickupDate}%0A• Return Date: ${formData.returnDate}%0A• Passengers: ${formData.passengers}%0A%0A*Special Requests:*%0A${formData.specialRequests || "None"}`;
 
     // WhatsApp number
-    const whatsappNumber = "916380773081";
+    const whatsappNumber = "917397271527";
 
     // Open WhatsApp with the message
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
@@ -135,14 +143,14 @@ export default function BookingsPage() {
 
         <div className="relative max-w-7xl mx-auto px-6 py-16 text-center">
           <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
-            🚗 Book Your Ride
+            🚗 Tempo Traveller & Car Rental
           </span>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Vehicle Bookings
+            Vehicle Booking
           </h1>
           <p className="text-xl text-green-100 max-w-2xl mx-auto">
-            Choose from our fleet of comfortable vehicles for your perfect
-            journey. Professional drivers and 24/7 support included.
+            Book tempo traveller, car rental, and driver services. 
+            Best cab booking near you with professional drivers and 24/7 support.
           </p>
         </div>
       </section>
@@ -161,7 +169,7 @@ export default function BookingsPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {vehicles.map((vehicle) => (
             <div
               key={vehicle.id}
