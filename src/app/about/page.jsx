@@ -31,66 +31,53 @@ export default function AboutPage() {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      {/* Hero Section with Parallax Effect */}
-      <section className="relative pt-24 pb-32 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&q=80')",
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/95 via-purple-900/90 to-indigo-900/95"></div>
-        </div>
-        
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-3xl"></div>
-        </div>
+      {/* Hero Section matching User Image */}
+      <section className="relative pt-32 pb-48 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#1e1b4b] via-[#4c1d95] to-[#5b21b6]">
 
-        <div className="relative container mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-8 border border-white/20">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            Since 14 April 2020
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Your Journey,<br />
-            <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">
+        {/* Subtle Background Pattern/Overlay */}
+        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500 rounded-full blur-[128px] opacity-20"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600 rounded-full blur-[128px] opacity-20"></div>
+
+        {/* Content Container */}
+        <div className="relative z-10 container mx-auto px-4 text-center">
+
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tight animate-fade-in-up drop-shadow-lg">
+            Your Journey,
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] via-[#f59e0b] to-[#ec4899] drop-shadow-none">
               Our Passion
             </span>
           </h1>
-          
-          <p className="text-xl md:text-2xl text-blue-100/90 max-w-3xl mx-auto mb-12 leading-relaxed">
-            From a small acting-driver service in Chennai to a trusted travel partner across India — 
-            we're driven by one goal: making your travels safe, easy, and memorable.
+
+          <p className="text-lg md:text-xl text-purple-100/90 max-w-3xl mx-auto mb-16 font-light leading-relaxed animate-fade-in-up animation-delay-200">
+            From a small acting-driver service in Chennai to a trusted travel partner across India — we're driven by one goal: making your travels safe, easy, and memorable.
           </p>
 
-          {/* Stats Counter */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          {/* Stats Cards - Purple Glass Effect */}
+          <div className="flex flex-wrap justify-center gap-6 animate-fade-in-up animation-delay-300">
             {[
-              { value: counters.years, suffix: "+", label: "Years of Service" },
-              { value: counters.customers, suffix: "+", label: "Happy Customers" },
-              { value: counters.trips, suffix: "+", label: "Successful Trips" },
-              { value: counters.cities, suffix: "+", label: "Cities Covered" },
+              { value: "5+", label: "Years of Service" },
+              { value: "5,000+", label: "Happy Customers" },
+              { value: "10,000+", label: "Successful Trips" },
+              { value: "50+", label: "Cities Covered" },
             ].map((stat, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 transform hover:scale-105 transition-all duration-300">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                  {stat.value.toLocaleString()}{stat.suffix}
+              <div
+                key={index}
+                className="bg-[#5b21b6]/30 backdrop-blur-md border border-white/10 rounded-2xl p-6 min-w-[160px] md:min-w-[200px] shadow-xl hover:bg-[#5b21b6]/40 transition-all duration-300 group"
+              >
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-md group-hover:scale-110 transition-transform duration-300">
+                  {stat.value}
                 </div>
-                <div className="text-blue-200 text-sm">{stat.label}</div>
+                <div className="text-purple-200 text-xs md:text-sm font-medium uppercase tracking-wider">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Wave Divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#F9FAFB"/>
-          </svg>
-        </div>
+
       </section>
 
       {/* Our Story - Timeline Style */}
@@ -180,14 +167,14 @@ export default function AboutPage() {
                       </svg>
                     </div>
                   </div>
-                  
+
                   <div className="flex-1 text-center md:text-left">
                     <span className="inline-block px-4 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 rounded-full text-sm font-semibold mb-3">
                       FOUNDER & PROPRIETOR
                     </span>
                     <h3 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Mr. Ramesh</h3>
                     <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                      Built this service with dedication, honesty, and a passion for helping people experience India without stress. 
+                      Built this service with dedication, honesty, and a passion for helping people experience India without stress.
                       His vision is simple — to make every journey safe, comfortable, and memorable.
                     </p>
                     <blockquote className="relative">
@@ -330,7 +317,7 @@ export default function AboutPage() {
           <div className="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="relative container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -377,7 +364,7 @@ export default function AboutPage() {
                 className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/30"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
                 WhatsApp Us
               </a>

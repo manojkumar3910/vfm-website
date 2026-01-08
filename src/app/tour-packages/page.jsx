@@ -285,53 +285,52 @@ export default function TourPackages() {
       <Header />
 
       {/* Hero Section with Background Image */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      {/* Hero Section with Background Image */}
+      <section className="relative pt-32 pb-24 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop')",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/85 to-purple-900/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-slate-900/80 to-black/80"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 py-16 text-center">
-          <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
-            🎒 Explore Amazing Tour Packages
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Tour Packages
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+
+          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 animate-fade-in-up">
+            Find Your Next <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">Adventure</span>
           </h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-10">
-            Explore our family tour packages, holiday packages, and weekend trips. 
-            Book Goa, Munnar, Ooty, Kerala, and North India tour packages at best prices.
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-12 font-light animate-fade-in-up animation-delay-200">
+            From the misty hills of Munnar to the pristine beaches of Goa. Discover packages designed for every kind of traveler.
           </p>
 
-          <div className="max-w-2xl mx-auto">
-            <div className="relative">
-              <svg
-                className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          <div className="max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-white/20 blur-xl rounded-full group-hover:bg-white/30 transition-all duration-500"></div>
+              <div className="relative flex items-center bg-white/95 backdrop-blur-xl rounded-full p-2 shadow-2xl ring-1 ring-white/20">
+                <div className="pl-6 text-gray-400">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search destinations (e.g. 'Ooty', 'Temple', 'Kerala')..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-transparent px-4 py-4 text-gray-800 placeholder-gray-500 focus:outline-none text-lg font-medium"
                 />
-              </svg>
-              <input
-                type="text"
-                placeholder="Search destinations, packages..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-14 pr-6 py-4 rounded-full bg-white shadow-xl text-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all"
-              />
+                <button className="hidden md:block bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-primary/50 transform hover:scale-105">
+                  Search
+                </button>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Categories as floating cards overlapping the bottom */}
+        <div className="absolute -bottom-10 left-0 right-0 h-20 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none"></div>
       </section>
 
       {/* Main Content */}
@@ -341,11 +340,10 @@ export default function TourPackages() {
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
-                selectedCategory === cat.id
-                  ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25 scale-105"
-                  : "bg-white text-gray-700 hover:bg-gray-100 shadow"
-              }`}
+              className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === cat.id
+                ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25 scale-105"
+                : "bg-white text-gray-700 hover:bg-gray-100 shadow"
+                }`}
             >
               <span>{cat.icon}</span>
               {cat.label}

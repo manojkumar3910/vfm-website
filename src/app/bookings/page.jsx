@@ -76,7 +76,7 @@ export default function BookingsPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Validate captcha
     const correctAnswer = captcha.num1 + captcha.num2;
     if (!captcha.answer) {
@@ -88,12 +88,12 @@ export default function BookingsPage() {
       return;
     }
     setCaptchaError("");
-    
+
     setIsSubmitting(true);
 
     // Get selected vehicle name
-    const vehicleName = selectedVehicle 
-      ? vehicles.find((v) => v.id === selectedVehicle)?.name 
+    const vehicleName = selectedVehicle
+      ? vehicles.find((v) => v.id === selectedVehicle)?.name
       : "Not selected";
 
     // Format the message for WhatsApp
@@ -108,7 +108,7 @@ export default function BookingsPage() {
     setIsSubmitting(false);
     setShowSuccess(true);
     generateCaptcha();
-    
+
     // Reset form
     setFormData({
       name: "",
@@ -122,7 +122,7 @@ export default function BookingsPage() {
       specialRequests: "",
     });
     setSelectedVehicle(null);
-    
+
     setTimeout(() => setShowSuccess(false), 5000);
   };
 
@@ -131,28 +131,35 @@ export default function BookingsPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-24 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1920&q=80')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop')",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-green-900/90 via-green-800/85 to-teal-900/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-green-900/90 via-teal-900/85 to-emerald-950/90"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 py-16 text-center">
-          <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
-            🚗 Tempo Traveller & Car Rental
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Vehicle Booking
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+
+
+          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight animate-fade-in-up">
+            Start Your Journey <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-200">With Comfort</span>
           </h1>
-          <p className="text-xl text-green-100 max-w-2xl mx-auto">
-            Book tempo traveller, car rental, and driver services. 
-            Best cab booking near you with professional drivers and 24/7 support.
+
+          <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-10 font-light animate-fade-in-up animation-delay-200">
+            From luxury Tempo Travellers for family trips to premium sedans for business.
+            Experience the joy of hassle-free travel.
           </p>
+
+
         </div>
+
+        {/* Decorative fade at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50 to-transparent"></div>
       </section>
 
       {/* Vehicle Selection */}
@@ -174,11 +181,10 @@ export default function BookingsPage() {
             <div
               key={vehicle.id}
               onClick={() => setSelectedVehicle(vehicle.id)}
-              className={`relative bg-white rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ${
-                selectedVehicle === vehicle.id
-                  ? "ring-4 ring-green-500 shadow-2xl shadow-green-500/20 scale-[1.02]"
-                  : "shadow-lg hover:shadow-xl hover:-translate-y-1"
-              }`}
+              className={`relative bg-white rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ${selectedVehicle === vehicle.id
+                ? "ring-4 ring-green-500 shadow-2xl shadow-green-500/20 scale-[1.02]"
+                : "shadow-lg hover:shadow-xl hover:-translate-y-1"
+                }`}
             >
               {selectedVehicle === vehicle.id && (
                 <div className="absolute top-4 right-4 z-10 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
@@ -228,11 +234,10 @@ export default function BookingsPage() {
 
                 <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                   <div
-                    className={`px-4 py-2 rounded-full font-medium ${
-                      selectedVehicle === vehicle.id
-                        ? "bg-green-500 text-white"
-                        : "bg-gray-100 text-gray-600"
-                    }`}
+                    className={`px-4 py-2 rounded-full font-medium ${selectedVehicle === vehicle.id
+                      ? "bg-green-500 text-white"
+                      : "bg-gray-100 text-gray-600"
+                      }`}
                   >
                     {selectedVehicle === vehicle.id ? "Selected" : "Select"}
                   </div>
@@ -546,11 +551,10 @@ export default function BookingsPage() {
             <button
               type="submit"
               disabled={isSubmitting || !selectedVehicle}
-              className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 ${
-                isSubmitting || !selectedVehicle
-                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 transform hover:-translate-y-1 shadow-lg hover:shadow-green-500/25"
-              }`}
+              className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 ${isSubmitting || !selectedVehicle
+                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                : "bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 transform hover:-translate-y-1 shadow-lg hover:shadow-green-500/25"
+                }`}
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">
