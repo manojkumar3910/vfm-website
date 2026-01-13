@@ -24,7 +24,7 @@ const vehicles = [
   {
     id: "acting-driver",
     name: "Acting Driver",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80",
+    image: "/assests/car.jpg",
     capacity: "Your Vehicle",
     features: ["Experienced Driver", "Know Local Routes", "Flexible Timing", "Safe Driving"],
     description: "Professional driver for your own vehicle",
@@ -136,7 +136,7 @@ export default function BookingsPage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop')",
+            backgroundImage: "url('/assests/bg.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-green-900/90 via-teal-900/85 to-emerald-950/90"></div>

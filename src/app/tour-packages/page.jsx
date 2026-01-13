@@ -290,7 +290,7 @@ export default function TourPackages() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop')",
+            backgroundImage: "url('/assests/bg2.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-slate-900/80 to-black/80"></div>
@@ -371,7 +371,7 @@ export default function TourPackages() {
                   alt={p.title}
                   className="object-cover h-full w-full group-hover:scale-110 transition-transform duration-700"
                   onError={(e) => {
-                    e.target.src = "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80";
+                    e.target.src = "/assests/bg3.jpg";
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
